@@ -2,27 +2,27 @@ import { createContext, useContext, useState } from "react";
 import { Alert } from "../components/alert.component";
 
 export const UseAlert = createContext({
-  description: '',
-  setDescription: (text) => {}
+  alertConfig: '',
+  setAlertConfig: (text) => {}
 })
 
 export const useAlertContext = () => useContext(UseAlert);
 
 const UseAlertProvider = value => {
-  const [description, setDescription] = useState('');
+  const [alertConfig, setAlertConfig] = useState({ description: '', title: '' });
 
-  const setDescriptionCustom = (text) => {
-    setDescription(text)
+  const setDescriptionCustom = ({ description, title }) => {
+    setAlertConfig(old =>({ ...old, description, title }))
 
     setTimeout(() => {
-      setDescription('')
-    }, 5000)
+      setAlertConfig(old => ({ ...old, description: '', title: '' }))
+    }, 10000)
   }
 
   return (
-    <UseAlert.Provider value={{ description, setDescription: setDescriptionCustom }}>
+    <UseAlert.Provider value={{ alertConfig, setAlertConfig: setDescriptionCustom }}>
       <div>
-      { description && <Alert description={description}/> }
+      { alertConfig.description && <Alert description={alertConfig.description} title={alertConfig.title} /> }
       </div>
       { value.children }
     </UseAlert.Provider>
