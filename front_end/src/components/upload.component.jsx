@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import filesvg from '../svg/cloud-computing-svgrepo-com.svg'
 import filesvgWait from '../svg/cloud-computing-svgrepo-com-wait.svg'
+import { apiRequest } from "../helpers/api.helpers";
+import { useAlertContext } from "../hooks/useAlert";
 
 const initialValue = {
   lastModified: null,
@@ -11,9 +13,24 @@ const initialValue = {
   webkitRelativePath: ""
 }
 
-export const UploadFile = ({ onSubmit = () => {}, loading = false } ) => {
+export const UploadFile = () => {
 
   const [file, setFile] = useState(initialValue);
+  const [loading, setLoading] = useState(false)
+
+  const { setAlertConfig } = useAlertContext();
+
+  const onSubmit = (data) => {
+    setLoading(true)
+    apiRequest.post('upload', data)
+      .then(res => {
+        console.log('res', res)
+        setLoading(false)
+      }).catch(err => {
+        setAlertConfig({ description: 'Erro ao realizar upload', title: 'ERROR' })
+        setLoading(false)
+      })
+  }
 
   return(    
       <div className="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-xl">
