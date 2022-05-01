@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+  api:
+    image: back_end_api
+    build:
+      context: ./back_end
+      dockerfile: Dockerfile
+    container_name: back_end_api
+    ports:
+      - '5000:5000'
+    environment:
+      - NODE_ENV=developement
+      - URL_DATABASE=db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      - db
+  

@@ -22,12 +22,12 @@ export const UploadFile = () => {
 
   const onSubmit = (data) => {
     setLoading(true)
-    apiRequest.post('upload', data)
+    apiRequest.post('stores/upload', data)
       .then(res => {
-        console.log('res', res)
+        setAlertConfig({ description: 'Upload realizado com sucesso!', title: 'OK', type: 'success' })
         setLoading(false)
       }).catch(err => {
-        setAlertConfig({ description: 'Erro ao realizar upload', title: 'ERROR' })
+        setAlertConfig({ description: 'Erro ao realizar upload', title: 'ERROR', type: 'danger' })
         setLoading(false)
       })
   }

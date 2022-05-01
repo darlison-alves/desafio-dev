@@ -4,9 +4,15 @@ class ApiRequest {
 
   post(path, body) {
     return new Promise((resolve, reject) => {
+
+      const formData = new FormData();
+      formData.append('file', body);
       fetch(`${urlBase}/${path}`,{
         method: 'POST',
-        body
+        body: formData,
+        headers: {
+
+        }
       }).then(res => res.json())
       .then(data => {
         resolve(data)
