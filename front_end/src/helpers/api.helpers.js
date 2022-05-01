@@ -21,6 +21,23 @@ class ApiRequest {
       })
     })
   }
+
+  get(path) {
+    return new Promise((resolve, reject) => {
+      fetch(`${urlBase}/${path}`,{
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(data => {
+        resolve(data)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  }
+
 }
 
 export const apiRequest = new ApiRequest();

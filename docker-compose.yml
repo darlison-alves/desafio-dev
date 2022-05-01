@@ -11,7 +11,7 @@ services:
   api:
     image: back_end_api
     build:
-      context: ./back_end
+      context: ./backEnd
       dockerfile: Dockerfile
     container_name: back_end_api
     ports:
