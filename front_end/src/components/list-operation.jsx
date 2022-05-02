@@ -4,28 +4,35 @@ import moment from 'moment';
 import { apiRequest } from "../helpers/api.helpers";
 import { formatter } from "../helpers/utils.helper";
 
-export const ListOperations = () => {
-
-  const [operations, setOperations] = React.useState([])
-
-  const getList = () => {
-    apiRequest.get('stores/operations')
+export const ListOperations = ({totalAmount, operations, setFilters = () => {} }) => {  
+  
+  const [nameOwners, setNameOwners] = React.useState([])
+  
+  const getListName = () => { 
+    apiRequest.get('stores/store-owner', {})
       .then(res => {
-        console.log('33', res)
-        setOperations(res.operations)
+        setNameOwners(res)
       }).catch(err => {
         console.log('err', err)
       })
   }
-
+  
   React.useEffect(() => {
-    getList()
-  }, [])
+    getListName()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [operations])
 
 
   return (
     <div>
-      <select type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar pelo nome Dono" title="Type in a name"></select>
+      <select type="text" id="myInput" onChange={(evt) => {
+        setFilters(old => ({...old, storeOwner: evt.target.value }))
+        console.log('evt', evt.target.value)
+      }} placeholder="Pesquisar pelo nome Dono" title="Type in a name">
+        {
+          nameOwners.map( owner => <option value={owner.storeOwner} > {owner.storeOwner} </option>)
+        }
+      </select>
       <h1 className="tb-title">Lista de Operações</h1>
 
       <table id="myTable">
@@ -40,7 +47,7 @@ export const ListOperations = () => {
           <th>Nome Loja</th>
         </tr>
         <tr class="header">
-          <td colSpan={8} >saldo: </td>
+          <td colSpan={8} >saldo: {formatter.format(totalAmount)}</td>
         </tr>
         {
           operations.map(operation => {

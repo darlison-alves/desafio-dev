@@ -1,4 +1,4 @@
-import { Controller, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 import { PassThrough } from 'stream';
@@ -32,8 +32,14 @@ export class AppController {
   }
 
   @Get('/operations')
-  async getOperation() {
-    return this.appService.findAll();
+  async getOperation(@Query() filter) {
+    console.log('filter', filter)
+    return this.appService.findAll(filter);
+  }
+
+  @Get('/store-owner')
+  async getStoreOwner() {
+    return this.appService.getOwnersStore()
   }
 
 }

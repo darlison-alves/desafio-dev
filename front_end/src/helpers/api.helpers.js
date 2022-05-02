@@ -22,9 +22,15 @@ class ApiRequest {
     })
   }
 
-  get(path) {
+  get(path, params) {
     return new Promise((resolve, reject) => {
-      fetch(`${urlBase}/${path}`,{
+      var query = ""
+
+      if(params.storeOwner) {
+        query = `?storeOwner=${params.storeOwner}`
+      } 
+      
+      fetch(`${urlBase}/${path}${query}`,{
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
