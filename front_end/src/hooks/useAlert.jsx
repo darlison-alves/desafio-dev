@@ -9,20 +9,20 @@ export const UseAlert = createContext({
 export const useAlertContext = () => useContext(UseAlert);
 
 const UseAlertProvider = value => {
-  const [alertConfig, setAlertConfig] = useState({ description: '', title: '' });
+  const [alertConfig, setAlertConfig] = useState({ description: '', title: '', type: '' });
 
-  const setDescriptionCustom = ({ description, title }) => {
-    setAlertConfig(old =>({ ...old, description, title }))
+  const setDescriptionCustom = ({ description, title, type }) => {
+    setAlertConfig(old =>({ ...old, description, title, type }))
 
     setTimeout(() => {
-      setAlertConfig(old => ({ ...old, description: '', title: '' }))
+      setAlertConfig(old => ({ ...old, description: '', title: '', type: '' }))
     }, 10000)
   }
 
   return (
     <UseAlert.Provider value={{ alertConfig, setAlertConfig: setDescriptionCustom }}>
       <div>
-      { alertConfig.description && <Alert description={alertConfig.description} title={alertConfig.title} /> }
+      { alertConfig.description && <Alert type={alertConfig.type} description={alertConfig.description} title={alertConfig.title} /> }
       </div>
       { value.children }
     </UseAlert.Provider>
