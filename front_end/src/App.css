@@ -259,7 +259,7 @@ button, input, optgroup, select, textarea {
 
 
 /* TABLE */
-#customers {
+/* #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -280,4 +280,39 @@ button, input, optgroup, select, textarea {
   text-align: left;
   background-color: #04AA6D;
   color: white;
+} */
+
+.tb-title {
+  padding: 12px 0px 22px 0px;
+}
+#myInput {
+  background-image: url('svg/search-svgrepo-com.svg');
+  background-position: 4px 0px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  background-size: 31px 43px
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #8bacd7;
 }
