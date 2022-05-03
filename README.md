@@ -1,28 +1,32 @@
-# API Autenticação
+# Upload Test
 
-
-usuário no banco
-
-username : 'maria'
-password : 'maria123'
-
-``` bash
-  git clone https://github.com/darlison-alves/api-auth.git
-  cd api-auth
-
-  source envs.sh
-  npm install
-  npm start
-```
-
-Outra forma pedo docker-compose
+Forma para roda aplicação:
 
 ```
    sudo docker-compose up
 ```
 
-### Nota:
+Documentação da api
+obs: endpoint após "docker-compose" http://localhost:5000
+
 ```
- source envs.sh
+POST /stores/upload
+headers {
+    Content-Type: multipart/form-data;
+}
+body {
+    file: binary
+}
 ```
-Variáveis de ambiente do app
+
+```
+GET /stores/operations
+headers {
+    Content-Type: application/json
+}
+response {
+    count: number;
+    operations: [,…]
+    sum: {total: number}
+}
+```
