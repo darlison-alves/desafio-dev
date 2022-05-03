@@ -21,6 +21,19 @@ services:
       - URL_DATABASE=db
       - DB_USER=postgres
       - DB_PASSWORD=postgres
+      - DB_NAME=postgres
     depends_on:
       - db
+  front:
+    image: front
+    build:
+      context: ./front_end
+      dockerfile: Dockerfile
+    container_name: front_end
+    ports:
+      - '3000:3000'
+    environment:
+      - URL_API=api:5000
+    depends_on:
+      - api
   

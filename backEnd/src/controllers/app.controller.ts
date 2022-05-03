@@ -9,10 +9,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): object {
-    return {
-      message: 'Welcome BackEnd!'
-    }
+  getHello(): string {
+    return this.appService.getHello()
   }
 
   @Post('/upload')

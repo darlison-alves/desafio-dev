@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { getRepository, Repository } from 'typeorm';
-import { Operation } from 'src/entities/operation.entity';
+import { Operation } from '../entities/operation.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { NormalizeFileUpload } from 'src/helpers/normalize-file-upload.helper';
+import { NormalizeFileUpload } from '../helpers/normalize-file-upload.helper';
 import { PassThrough } from 'stream';
 import * as readline from 'readline'
 
