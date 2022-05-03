@@ -41,12 +41,12 @@ export const configFile = {
     start: 48,
     end: 62,
     name: 'Tipo',
-    format: (value) => value
+    format: (value: string = "") => value.trim()
   },
   storeName: {
     start: 62,
     end: 81,
     name: 'Tipo',
-    format: (value) => value
+    format: (value: string = "") => value.trim()
   }
 }

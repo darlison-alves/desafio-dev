@@ -2,14 +2,14 @@ import { NormalizeFileUpload } from "../../../src/helpers/normalize-file-upload.
 
 const TIPO = "3";
 const itemMock = {
-  type: '3',
-  data: '2019030',
-  valor: '000001420',
-  cpf: '0962067601',
-  cartao: '4753****315',
-  hora: '153453',
-  dono: 'JOÃO MACEDO  ',
-  nomeLoja: 'BAR DO JOÃO       '
+  type: 3,
+  data: '2019-03-01',
+  amount: 142,
+  document: "09620676017",
+  card: '4753****3153',
+  hour: '153453',
+  storeOwner: 'JOÃO MACEDO',
+  storeName: 'BAR DO JOÃO'
 }
 
 describe('#helpers', () => {

@@ -13,7 +13,7 @@ const initialValue = {
   webkitRelativePath: ""
 }
 
-export const UploadFile = () => {
+export const UploadFile = ({ofterUpload = () => {}}) => {
 
   const [file, setFile] = useState(initialValue);
   const [loading, setLoading] = useState(false)
@@ -26,6 +26,7 @@ export const UploadFile = () => {
       .then(res => {
         setAlertConfig({ description: 'Upload realizado com sucesso!', title: 'OK', type: 'success' })
         setLoading(false)
+        ofterUpload()
       }).catch(err => {
         setAlertConfig({ description: 'Erro ao realizar upload', title: 'ERROR', type: 'danger' })
         setLoading(false)

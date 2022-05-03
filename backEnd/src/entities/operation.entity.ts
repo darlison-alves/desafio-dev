@@ -32,4 +32,6 @@ export class Operation {
   @Column()
   storeName: string;
 
+  totalAmount: number
+
 }
