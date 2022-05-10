@@ -24,10 +24,10 @@ class ApiRequest {
 
   get(path, params) {
     return new Promise((resolve, reject) => {
-      var query = ""
+      var query = "?size=100"
 
       if(params.storeName) {
-        query = `?storeName=${params.storeName}`
+        query = query + `&storeName=${params.storeName}`
       } 
       
       fetch(`${urlBase}/${path}${query}`,{

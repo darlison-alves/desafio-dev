@@ -41,7 +41,7 @@ public class FileService {
         });
     }
 
-    private void normalizeAndPersistence(String line) throws ParseException {
+    public Operation normalizeAndPersistence(String line) throws ParseException {
         NormalizeFile normalizeFile = new NormalizeFile();
         try {
             Operation operation = new Operation();
@@ -52,15 +52,16 @@ public class FileService {
             BeanUtils.copyProperties(operationDTO, operation);
 
             operation.setType(transaction);
-
             this.operationRepository.save(operation);
+
+            logger.info("processed line: " + line);
+
+            return operation;
 
         } catch (ParseException e) {
             logger.error(e.getMessage());
             throw e;
         }
-
-        logger.info("processed line: " + line);
     }
 
     public Page<Operation> findAll(String storeName, Pageable pageable) {
