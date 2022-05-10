@@ -22,7 +22,7 @@ export const UploadFile = ({ofterUpload = () => {}}) => {
 
   const onSubmit = (data) => {
     setLoading(true)
-    apiRequest.post('stores/upload', data)
+    apiRequest.post('operations/upload', data)
       .then(res => {
         setAlertConfig({ description: 'Upload realizado com sucesso!', title: 'OK', type: 'success' })
         setLoading(false)

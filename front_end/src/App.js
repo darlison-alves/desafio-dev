@@ -11,10 +11,21 @@ function App() {
   const [filters, setFilters] = React.useState({})
 
   const getList = () => {
-    apiRequest.get('stores/operations', filters)
+    console.log('filters', filters)
+    apiRequest.get('operations', filters)
       .then(res => {
-        setOperations(res.operations)
-        setTotalAmount(res.sum.total)
+        setOperations(res.content)
+        // setTotalAmount(res.sum.total)
+      }).catch(err => {
+        console.log('err', err)
+      })
+  }
+
+  const getSum = () => {
+    apiRequest.get('operations/sum', filters)
+      .then(res => {
+        // setOperations(res.content)
+        setTotalAmount(res.amount)
       }).catch(err => {
         console.log('err', err)
       })
@@ -22,6 +33,7 @@ function App() {
 
   React.useEffect(() => {
     getList()
+    getSum()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[filters])
 

@@ -9,7 +9,7 @@ export const ListOperations = ({totalAmount, operations, setFilters = () => {} }
   const [nameOwners, setNameOwners] = React.useState([])
   
   const getListName = () => { 
-    apiRequest.get('stores/store-owner', {})
+    apiRequest.get('operations/store-names', {})
       .then(res => {
         setNameOwners(res)
       }).catch(err => {
@@ -26,11 +26,12 @@ export const ListOperations = ({totalAmount, operations, setFilters = () => {} }
   return (
     <div>
       <select type="text" id="myInput" onChange={(evt) => {
-        setFilters(old => ({...old, storeOwner: evt.target.value }))
+        setFilters(old => ({...old, storeName: evt.target.value }))
         console.log('evt', evt.target.value)
       }} placeholder="Pesquisar pelo nome Dono" title="Type in a name">
+        <option value={""} >Selecione loja</option>
         {
-          nameOwners.map( owner => <option value={owner.storeOwner} > {owner.storeOwner} </option>)
+          nameOwners.map( owner => <option value={owner.name} > {owner.name} </option>)
         }
       </select>
       <h1 className="tb-title">Lista de Operações</h1>

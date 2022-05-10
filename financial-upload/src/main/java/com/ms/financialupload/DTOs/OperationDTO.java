@@ -12,7 +12,7 @@ public class OperationDTO {
     private BigDecimal amount;
     private String document;
     private String card;
-    private String hour;
+    private Date hour;
     private String storeOwner;
     private String storeName;
 }
