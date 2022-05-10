@@ -26,8 +26,8 @@ class ApiRequest {
     return new Promise((resolve, reject) => {
       var query = ""
 
-      if(params.storeOwner) {
-        query = `?storeOwner=${params.storeOwner}`
+      if(params.storeName) {
+        query = `?storeName=${params.storeName}`
       } 
       
       fetch(`${urlBase}/${path}${query}`,{

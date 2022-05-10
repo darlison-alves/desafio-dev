@@ -15,7 +15,7 @@ public class HourNormalize extends NormalizeFieldBase {
     public void formatData(OperationDTO operationDTO, String value) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("hhmmss");
         Date time = dateFormat.parse(value);
-        operationDTO.setHour(value);
+        operationDTO.setHour(time);
     }
 
 }

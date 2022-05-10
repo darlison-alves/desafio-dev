@@ -18,8 +18,9 @@ public class Operation {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "increment")
     private Long id;
 
-    @Column()
-    private Long type;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "typeId")
+    private TypeTransaction type;
 
     @Temporal(TemporalType.DATE)
     private Date date;
